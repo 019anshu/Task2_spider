@@ -1,0 +1,134 @@
+Question: Implement the basic operations on Array.
+Solution:
+
+#include <stdio.h>
+#include <stdlib.h>
+//This Program illustrates the basic operations on a one Dimensional Array.
+
+void display(int a[], int *size)    //Function to display the elements of the array
+{
+    int n= *size;
+    printf("The elements of the Array are:\n");
+    for(int i=0; i<n;i++)
+    {
+        printf("%d\n",a[i]);
+    }
+}
+void insertion(int a[], int *size)  //Function to insert new elements into the Array
+{
+    int val,pos,n= *size;
+    display(a,&n);
+    printf("Enter the value to be inserted:\n");
+    scanf("%d",&val);
+    printf("Enter the index position, %d is to be inserted:\n", val);
+    scanf("%d",&pos);
+    if(pos<=n)
+    {
+        printf("Before Insertion,");
+        display(a,&n);
+        n=n+1;
+        *size=n;
+        for(int i=n-1;i>pos;i--)
+        {
+            a[i]=a[i-1];
+        }
+        a[pos]=val;
+        printf("%d inserted at the %dth index.\n",val,pos);
+        printf("After Insertion,");
+        display(a,&n);
+    }
+    else
+    {
+        printf("%dth index does not exist in this Array\n",pos);
+    }
+    printf("\n-------------------------------------------------\n");
+}
+void deletion(int a[],int *size)    //Function to delete the element of the array
+{
+    int pos, n= *size;
+    display(a,&n);
+    printf("Enter the index position of the element to be deleted:\n");
+    scanf("%d",&pos);
+    if(pos<n)
+    {
+        printf("Array before Deletion,");
+        display(a,&n);
+        for(int i=pos;i<n;i++)
+        {
+            a[i]=a[i+1];
+        }
+        n=n-1;
+        *size=n;
+        printf("Array after Deletion:\n");
+        display(a,&n);
+    }
+    else
+    {
+        printf("%dth index does not exist in this array.\n",pos);
+    }
+
+}
+void updation(int a[], int *size)   //Function to update the existing element with new value.
+{
+    int pos, val, n=*size;
+    display(a,&n);
+    printf("Enter the index position of the element to be updated:\n");
+    scanf("%d",&pos);
+    if(pos<n)
+    {
+        printf("Enter the value:\n");
+        scanf("%d",&val);
+        a[pos]=val;
+        printf("Array after Updation,");
+        display(a,&n);
+    }
+    else
+    {
+        printf("%dth index does not exist in this Array.\n",pos);
+    }
+
+}
+int main()
+{
+    printf("<<<<   Array 1: Basic Operations on one-dimensional array.   >>>>\n");
+    int size,a[100];
+    printf("Enter the size of the Array:\n");
+    scanf("%d", &size);
+    printf("Enter the elements of the Array:\n");
+    for(int i=0; i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    int ch=1;             //ch is for choice in the menu.
+    while(ch!=5)
+    {
+        printf("\n-------------------------------------------------\n");
+        printf("Enter your choice:\n"); //menu of operations to be done on the array.
+        printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+        printf(" 1 Display\n 2 Insertion\n 3 Deletion\n 4 Updation\n 5 Exit\n");
+        printf("-------------------------------------------------\n");
+        scanf("%d",&ch);
+        if(ch==1)
+        {
+            display(a,&size);
+        }
+        else if(ch==2)
+        {
+            insertion(a,&size);
+        }
+        else if(ch==3)
+        {
+            deletion(a,&size);
+        }
+        else if(ch==4)
+        {
+            updation(a,&size);
+        }
+        else
+        {
+            printf("Invalid Choice!\n");
+        }
+    }
+    return 0;
+
+}
