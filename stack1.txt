@@ -1,0 +1,147 @@
+Question: Implement asic operations on stack.
+
+Solution :
+#include <stdio.h>
+#include <stdlib.h>
+//Implement basic operations on stack.
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+struct Node *top;
+void push()
+{
+    struct Node *newNode= (struct Node*)malloc(sizeof(struct Node));
+    if(newNode==NULL)
+    {
+        printf("Not able to push the element\n");
+    }
+    else
+    {
+        printf("Enter the element to be pushed:\n");
+        int val;
+        scanf("%d", &val);
+        if(top==NULL)
+        {
+            newNode -> data = val;
+            newNode -> next = NULL;
+            top= newNode;
+        }
+        else
+        {
+            newNode-> data=val;
+            newNode-> next=top;
+            top= newNode;
+        }
+        printf("%d pushed\n", val);
+    }
+
+}
+void pop()
+{
+    struct Node *ptr;
+    if(top==NULL)
+    {
+        printf("Underflow\n");
+    }
+    else
+    {
+
+        ptr=top;
+        top=ptr->next;
+        printf("%d popped\n", ptr->data);
+        free(ptr);
+    }
+}
+void search()
+{
+    struct Node *ptr;
+    ptr=top;
+    int val,count=0,pos=0;
+    printf("Enter the key to be searched:\n");
+    scanf("%d", &val);
+    while(ptr!=NULL)
+    {
+        pos++;
+        if(ptr-> data == val)
+        {   count++;
+            break;
+        }
+        ptr= ptr->next;
+    }
+    if(count==0)
+    {
+        printf("Element is not present in the stack:\n");
+    }
+    else
+        printf("%d found at %d position\n",val, pos);
+}
+void display()
+{
+    struct Node *ptr;
+    ptr=top;
+    if(ptr==NULL)
+    {
+        printf("Stack is Empty!\n");
+    }
+    else
+    {
+        printf("the elements in the stack are:\n");
+        while(ptr!=NULL)
+        {
+            printf("%d\n", ptr->data);
+            ptr= ptr->next;
+        }
+    }
+}
+
+int main()
+{
+    int ch,flag=1;
+    while(flag==1)
+    {
+        printf("--------------------------------------------------\n");
+        printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+        printf("Enter a choice of operation to be done here:\n 1 for Push Operation. \n 2 for Pop Operation. \n 3 for Search Operation.\n");
+        printf("--------------------------------------------------\n\n");
+        scanf("%d", &ch);
+        switch(ch)
+        {
+            case 1:
+                {
+                    printf("Option selected: 1 Push Operation\n");
+                    push();
+                    printf("After Pushing,");
+                    display();
+                    break;
+                }
+            case 2:
+                {
+                    printf("Option selected: 2 Pop Operation\n");
+                    pop();
+                    printf("After Popping,");
+                    display();
+                    break;
+                }
+            case 3:
+                {
+                    printf("Option selected: 3 Search Operation\n");
+                    display();
+                    search();
+                    break;
+                }
+            default:
+                {
+                    printf("Invalid Choice!\n");
+                    break;
+                }
+
+        }
+        printf("--------------------------------------------------\n");
+        printf("PRESS 1 TO CONTINUE OR PRESS ANY OTHER KEY TO EXIT\n");
+        printf("--------------------------------------------------\n\n");
+        scanf("%d", &flag);
+    }
+    return 0;
+}
