@@ -1,0 +1,29 @@
+Question: program in C to find the sum of all elements of the array.
+Question link: https://www.w3resource.com/c-programming-exercises/array/index.php
+Solution:
+#include <stdio.h>
+#include <stdlib.h>
+//program in C to find the sum of all elements of the array.
+int main()
+{
+    int a[50],n;
+    printf("Enter the size of the array:\n");
+    scanf("%d", &n);
+    printf("Enter the elements of the Array:\n");
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("The elements of the Array:\n");
+    for(int i=0;i<n;i++)
+    {
+        printf("%d  ",a[i]);
+    }
+    int sum=0;
+    for(int i=0;i<n;i++)
+    {
+        sum= sum+a[i];
+    }
+    printf("\nSum of all the elements in the array is: %d\n", sum);
+    return 0;
+}
