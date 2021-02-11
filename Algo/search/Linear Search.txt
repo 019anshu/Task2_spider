@@ -1,0 +1,50 @@
+Question Link: https://www.geeksforgeeks.org/linear-search/
+
+ Question: Implement linear search in a linear array
+
+Solution:
+// C program for implementation of Linear Search
+#include <stdio.h>
+
+void linearSearch(int arr[], int size)
+{
+    int val;
+    printf("Enter the element to be searched: \n");
+    scanf("%d",&val);
+    int count=0 ,pos=0;
+    for(int i=0;i<size; i++)
+    {
+        if(arr[i]==val)
+         {
+            pos=i;
+            count+=1;
+            break;
+         }
+    }
+    if(count!=0)
+        printf("%d found at %dth index.\n",val,pos);
+    else
+        printf("%d is not present in the array\n", val);
+
+}
+void display(int arr[], int size)
+{
+    int i;
+    printf("The elements in the array are:\n");
+    for (i=0; i < size; i++)
+        printf("%d\n", arr[i]);
+}
+int main()
+{
+    int n;
+    printf("Enter the size:\n");
+    scanf("%d",&n);
+    int arr[n];
+    int i;
+    printf("Enter the elements of the array:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d",&arr[i]);
+    display(arr,n);
+    linearSearch(arr, n);
+    return 0;
+}
